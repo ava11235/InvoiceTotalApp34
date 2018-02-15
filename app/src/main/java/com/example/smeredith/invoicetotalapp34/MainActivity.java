@@ -1,8 +1,12 @@
 package com.example.smeredith.invoicetotalapp34;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -39,6 +43,30 @@ public class MainActivity extends Activity implements TextView.OnEditorActionLis
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
         calculateAndDisplay();
         return false;
+    }
+
+    //display the menu
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+
+        return true;
+
+    }
+
+    //handle the menu events
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.about:
+                startActivity(new Intent(this, AboutActivity.class));
+                return true;
+
+            case R.id.help:
+                startActivity(new Intent(this, HelpActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void calculateAndDisplay(){
